@@ -1,0 +1,138 @@
+\documentclass[a0,portrait]{a0poster}
+% You might find the 'draft' option to a0 poster useful if you have
+% lots of graphics, because they can take some time to process and
+% display. (\documentclass[a0,draft]{a0poster})
+
+% Switch off page numbers on a poster, obviously, and section numbers too.
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+
+% The textpos package is necessary to position textblocks at arbitary 
+% places on the page.
+\usepackage[absolute]{textpos}
+\usepackage[percent]{overpic}
+\usepackage{lipsum}
+% Graphics to include graphics. Times is nice on posters, but you
+% might want to switch it off and go for CMR fonts.
+\usepackage{graphics,wrapfig,times}
+
+% These colours are tried and tested for titles and headers. Don't
+% over use color!
+\usepackage{color}
+\definecolor{DarkBlue}{rgb}{0.1,0.1,0.5}
+\definecolor{Red}{rgb}{0.9,0.0,0.1}
+% see documentation for a0poster class for the size options here
+\let\Textsize\normalsize
+\def\Head#1{\noindent\hbox to \hsize{\hfil{\LARGE\color{DarkBlue} #1}}\bigskip}
+\def\LHead#1{\noindent{\LARGE #1}\smallskip}
+\def\Subhead#1{\noindent{\large #1}}
+\def\Title#1{\noindent{\VeryHuge\color{white} #1}}
+
+% Set up the grid
+%
+% Note that [40mm,40mm] is the margin round the edge of the page --
+% it is _not_ the grid size. That is always defined as 
+% PAGE_WIDTH/HGRID and PAGE_HEIGHT/VGRID. In this case we use
+% 15 x 25. This gives us a wide central column for text (7 grid
+% spacings) and two narrow columns (3 each) at each side for 
+% pictures, separated by 1 grid spacing.
+%
+% Note however that texblocks can be positioned fractionally as well,
+% so really any convenient grid size can be used.
+%
+\TPGrid[40mm,40mm]{15}{25}  % 3 - 1 - 7 - 1 - 3 Columns
+
+% Mess with these as you like
+\parindent=0pt
+%\parindent=1cm
+\parskip=0.5\baselineskip
+
+% abbreviations
+\newcommand{\ddd}{\,\mathrm{d}}
+
+\begin{document}
+\begin{overpic}
+{/home/killian/fyp_poster/SCSS_background.png}
+\put (0,0) {\includegraphics{tcd/SCSS.png}}
+\end{overpic}
+
+\begin{overpic}[unit=1mm]
+    {tcd/Title_Background.png}
+ \put (3,1) {\Title{I Love Posters}}
+\end{overpic}
+
+%\includegraphics{tcd/Title_Background.png}
+
+% Understanding textblocks is the key to being able to do a poster in
+% LaTeX. In
+%
+%    \begin{textblock}{wid}(x,y)
+%    ...
+%    \end{textblock}
+%
+% the first argument gives the block width in units of the grid
+% cells specified above in \TPGrid; the second gives the (x,y)
+% position on the grid, with the y axis pointing down.
+
+% You will have to do a lot of previewing to get everything in the 
+% right place.
+
+% This gives good title positioning for a portrait poster.
+% Watch out for hyphenation in titles - LaTeX will do it
+% but it looks awful.
+%\begin{textblock}{12}(0,1.8)
+%\baselineskip=3\baselineskip \Title{Anonymous Digital Cash using Zero Knowledge Proofs}
+%  Format With a\\Second title line below}
+%\end{textblock}
+%\begin{textblock}{17}(0,2.5)
+\begin{center}
+\LHead{Student: Patrick Losty Supervisor: Arthur Guiness}
+%\end{textblock}
+\end{center}
+
+% An example text block, to get you started!
+\begin{textblock}{7}(0,3)
+  \LHead{Introduction}
+  \lipsum
+ 
+\end{textblock}
+
+
+% Another text block in the bottom right.
+\begin{textblock}{7}(8,3)
+  \LHead{Some stuff}
+\lipsum  
+\end{textblock}
+
+% If you want to add a figure do something like this:
+
+%\begin{textblock}{3}(0,15)
+%  \begin{center}
+%\resizebox{3\TPHorizModule}{!}{\includegraphics{my_figure.eps}}
+%\\Figure 5: Googles per Snark (renormalised with wild angry men
+%  \end{center}
+%\end{textblock}
+\begin{textblock}{7}(0,16)
+\LHead{Things}
+
+\lipsum[8]
+
+\end{textblock}
+
+\begin{textblock}{7}(8,16)
+\LHead{Conclusions}
+
+\lipsum[13]
+
+\end{textblock}
+
+% Place the group logo at the bottom left - visually this balances
+% well with the University logo at the top right. 
+\begin{textblock}{3}(0,24)
+  \begin{center}
+\resizebox{2.5\TPHorizModule}{!}{\includegraphics{/home/killian/fyp_poster/TCD_LOGO.png}}
+  \end{center}
+\end{textblock}
+
+\end{document}
+
